@@ -20,16 +20,6 @@
                 <p><strong>Misi:</strong> Menyediakan pelatihan berbasis praktik, menghubungkan alumni dengan industri,
                     dan terus berinovasi dalam kurikulum.</p>
             </div>
-            <div class="card">
-                <h3>Instruktur</h3>
-                <p>Kami didampingi oleh instruktur berpengalaman dari berbagai bidang: Social Media, Videografi,
-                    Copywriting, dan Digital Marketing. Semua instruktur telah memiliki sertifikasi kompetensi.</p>
-            </div>
-            <div class="card">
-                <h3>Sertifikasi</h3>
-                <p>Setiap lulusan berhak mengikuti uji kompetensi dan mendapatkan sertifikat resmi yang diakui industri.
-                </p>
-            </div>
         </div>
     </div>
 </div>
