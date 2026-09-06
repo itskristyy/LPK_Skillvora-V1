@@ -1,4 +1,4 @@
--- Import file ini lewat phpMyAdmin Laragon
+
 CREATE DATABASE IF NOT EXISTS db_skillvora;
 USE db_skillvora;
 
