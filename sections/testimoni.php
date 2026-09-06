@@ -114,20 +114,40 @@
         <div class="testimoni-list">
             <?php
             // Logic get data testimoni sort by created_at
-            $query = "SELECT * FROM testimoni ORDER BY created_at DESC LIMIT 3";
+            $query = "SELECT * FROM testimoni ORDER BY created_at DESC";
             $result = mysqli_query($koneksi, $query);
+            $total_testimoni = mysqli_num_rows($result);
+            $index = 0;
             while ($row = mysqli_fetch_assoc($result)) {
-                echo '<div class="testimoni-card">';
+                $extra_class = ($index >= 3) ? ' extra-testimoni' : '';
+                $extra_style = ($index >= 3) ? ' style="display: none;"' : '';
+                echo '<div class="testimoni-card' . $extra_class . '"' . $extra_style . '>';
                 echo '<div class="isi">"' . htmlspecialchars($row['isi']) . '"</div>';
                 echo '<div class="nama">' . htmlspecialchars($row['nama']) . '</div>';
                 echo '<div class="kursus">' . htmlspecialchars($row['kursus']) . '</div>';
                 echo '<div class="tanggal">' . htmlspecialchars($row['created_at']) . '</div>';
                 echo '</div>';
+                $index++;
             }
             ?>
         </div>
+        <?php if ($total_testimoni > 3): ?>
         <div style="text-align:center; margin-top:36px;">
-            <a href="testimoni.php" class="btn btn-outline">Lihat Semua Testimoni</a>
+            <button type="button" id="btn-toggle-testimoni" class="btn btn-outline" onclick="toggleTestimoni()">Lihat Semua Testimoni</button>
         </div>
+        <script>
+        function toggleTestimoni() {
+            var extras = document.querySelectorAll('.extra-testimoni');
+            var btn = document.getElementById('btn-toggle-testimoni');
+            if (!extras.length || !btn) return;
+            
+            var isHidden = extras[0].style.display === 'none';
+            extras.forEach(function(card) {
+                card.style.display = isHidden ? 'flex' : 'none';
+            });
+            btn.textContent = isHidden ? 'Sembunyikan Testimoni' : 'Lihat Semua Testimoni';
+        }
+        </script>
+        <?php endif; ?>
     </div>
 </section>
