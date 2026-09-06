@@ -1,14 +1,16 @@
+<!-- // New Logic -->
 <?php
 include '../koneksi.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nama   = mysqli_real_escape_string($koneksi, $_POST['nama']);
-    $kursus = mysqli_real_escape_string($koneksi, $_POST['kursus']);
-    $isi    = mysqli_real_escape_string($koneksi, $_POST['isi']);
+    $f = array_map(fn($v) => mysqli_real_escape_string($koneksi, $v), $_POST);
 
-    $query = "INSERT INTO testimoni (nama, kursus, isi) VALUES ('$nama', '$kursus', '$isi')";
+    // Logic Insert data ke database
+    $query = "INSERT INTO testimoni (nama, kursus, isi) VALUES ('$f[nama]', '$f[kursus]', '$f[isi]')";
     mysqli_query($koneksi, $query);
-}
 
-header("Location: ../testimoni.php");
-exit;
+    // Logic Redirect ke halaman testimoni
+    header("Location: ../testimoni.php");
+    exit;
+}
+?>

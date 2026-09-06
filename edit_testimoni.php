@@ -1,29 +1,21 @@
+<!-- New Logic -->
 <?php
 include 'koneksi.php';
 
-if (!isset($_GET['id'])) {
-    header("Location: testimoni.php");
-    exit;
-}
-
+// Redirect jika tidak ada ID di URL
+isset($_GET['id']) or die(header("Location: testimoni.php"));
 $id = (int) $_GET['id'];
 
+// Handle POST: update data lalu redirect
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nama   = mysqli_real_escape_string($koneksi, $_POST['nama']);
-    $kursus = mysqli_real_escape_string($koneksi, $_POST['kursus']);
-    $isi    = mysqli_real_escape_string($koneksi, $_POST['isi']);
-    $query = "UPDATE testimoni SET nama='$nama', kursus='$kursus', isi='$isi' WHERE id=$id";
-    mysqli_query($koneksi, $query);
-    header("Location: testimoni.php");
-    exit;
+    $fields = array_map(fn($v) => mysqli_real_escape_string($koneksi, $v), $_POST);
+    mysqli_query($koneksi, "UPDATE testimoni SET nama='$fields[nama]', kursus='$fields[kursus]', isi='$fields[isi]' WHERE id=$id");
+    header("Location: testimoni.php"); exit;
 }
 
-$result = mysqli_query($koneksi, "SELECT * FROM testimoni WHERE id = $id");
-$row = mysqli_fetch_assoc($result);
-if (!$row) {
-    header("Location: testimoni.php");
-    exit;
-}
+// Ambil data; redirect jika tidak ditemukan
+$row = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM testimoni WHERE id=$id"))
+    or die(header("Location: testimoni.php"));
 
 include 'includes/header.php';
 ?>
@@ -31,7 +23,6 @@ include 'includes/header.php';
 <section class="page-banner">
     <h1>Edit Testimoni</h1>
     <p>Perbarui testimoni dari <?= htmlspecialchars($row['nama']) ?>.</p>
-    <div class="title-underline"></div>
 </section>
 
 <section class="section">
