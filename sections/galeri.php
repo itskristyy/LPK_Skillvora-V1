@@ -5,8 +5,8 @@
 
 .galeri-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 28px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
 }
 
 .galeri-card {
@@ -19,14 +19,16 @@
 
 .galeri-card img {
     width: 100%;
-    height: 220px;
+    height: 130px;
     object-fit: cover;
+    display: block;
     transition: transform 0.5s;
 }
 
-.galeri-card h3 {
-    padding: 16px 20px 20px;
-    font-size: 1rem;
+@media (max-width: 600px) {
+    .galeri-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 .section {
@@ -76,16 +78,22 @@
         <h2 class="section-title">Galeri Kegiatan</h2>
         <div class="galeri-grid">
             <div class="galeri-card">
-                <img src="assets/img/workshop.jpg" alt=" Workshop Desain" />
-                <h3>Workshop Desain</h3>
+                <img src="assets/img/workshop.jpg" alt="Workshop Desain" />
             </div>
             <div class="galeri-card">
                 <img src="assets/img/seminar.jpg" alt="Seminar Industri" />
-                <h3>Seminar Industri</h3>
             </div>
             <div class="galeri-card">
-                <img src="assets/img/sertifikat.jpg" alt=" Sertifikasi Kelulusan" />
-                <h3>Sertifikasi Kelulusan</h3>
+                <img src="assets/img/sertifikat.jpg" alt="Sertifikasi Kelulusan" />
+            </div>
+            <div class="galeri-card">
+                <img src="assets/img/class.png" alt="Kelas Praktik" />
+            </div>
+            <div class="galeri-card">
+                <img src="assets/img/diskus.png" alt="Diskusi Kelompok" />
+            </div>
+            <div class="galeri-card">
+                <img src="assets/img/meeting.png" alt="Meeting/Mentoring" />
             </div>
         </div>
     </div>
