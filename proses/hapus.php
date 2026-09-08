@@ -1,22 +1,23 @@
 <?php
-// Memuat file koneksi database dari folder induk (../koneksi.php) agar variabel $koneksi dapat digunakan
+// Menghubungkan program dengan database
 include '../koneksi.php';
 
-// Memeriksa apakah parameter 'id' dikirimkan melalui URL (metode GET)
+// Mengecek apakah ID data dikirim melalui URL
 if (isset($_GET['id'])) {
-    // Mengambil nilai 'id' dari URL dan mengonversinya ke tipe integer (angka bulat) demi mengamankan query dari SQL Injection
+
+    // Mengambil ID dari URL dan mengubahnya menjadi angka
     $id = (int) $_GET['id'];
-    
-    // Menyusun sintaks SQL DELETE untuk menghapus baris data pada tabel 'testimoni' yang memiliki kolom 'id' sesuai variabel $id
+
+    // Membuat perintah untuk menghapus data testimoni berdasarkan ID
     $query = "DELETE FROM testimoni WHERE id = $id";
-    
-    // Menjalankan/mengesekusi perintah SQL $query ke database menggunakan koneksi $koneksi
+
+    // Menjalankan perintah hapus ke database
     mysqli_query($koneksi, $query);
 }
 
-// Mengalihkan (redirect) browser kembali ke halaman testimoni.php yang ada di folder induk (../testimoni.php)
+// Setelah data dihapus, kembali ke halaman testimoni
 header("Location: ../testimoni.php");
 
-// Menghentikan eksekusi script PHP secara penuh setelah perintah redirect dipanggil
+// Menghentikan program
 exit;
-
+?>
