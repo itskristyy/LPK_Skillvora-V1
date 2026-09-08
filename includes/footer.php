@@ -68,7 +68,7 @@ footer {
     position: fixed;
     bottom: 26px;
     right: 26px;
-    background: var(--accent);
+    background: #25D366;
     color: #fff;
     width: 56px;
     height: 56px;
@@ -77,7 +77,7 @@ footer {
     align-items: center;
     justify-content: center;
     font-size: 1.8rem;
-    box-shadow: 0 8px 20px rgba(66, 36, 13, 0.3);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
     transition: transform 0.2s, background 0.2s;
     z-index: 999;
     text-decoration: none;
@@ -85,7 +85,7 @@ footer {
 
 .whatsapp-float:hover {
     transform: scale(1.08);
-    background: var(--accent-dark);
+    background: #1EBE57;
     color: #fff;
 }
 
